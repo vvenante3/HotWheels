@@ -26,6 +26,27 @@ Class Carrinho
             ':categoria'    => $categoria,
             ':numero'       => $numero,
         ]);
-    }   
+
+        return $stmt->rowCount() > 0;
+
+    }
+
+    private function adicionarCarrinho($modelo, $categoria, $numero) {
+        if($this->carrinhoExiste($modelo, $categoria, $numero)){
+            echo "Item já adicionado";
+        } else{
+            $stmt = $this->conn->prepare("INSERT INTO carrinhos (modelo, categoria, numero) VALUES (:modelo, :categoria, :numero)");
+
+            $stmt->execute([
+                ':modelo'       => $modelo,
+                ':categoria'    => $categoria,
+                ':numero'       => $numero
+            ]);
+
+            echo "Carrinho adicionado com sucesso!";
+            return true;
+        }
+    }
+
 }
 ?>
