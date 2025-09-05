@@ -34,6 +34,7 @@ Class Carrinho
     private function adicionarCarrinho($modelo, $categoria, $numero) {
         if($this->carrinhoExiste($modelo, $categoria, $numero)){
             echo "Item já adicionado";
+            return false;
         } else{
             $stmt = $this->conn->prepare("INSERT INTO carrinhos (modelo, categoria, numero) VALUES (:modelo, :categoria, :numero)");
 
