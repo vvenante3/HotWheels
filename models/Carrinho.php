@@ -19,18 +19,6 @@ Class Carrinho
         }
     }
 
-    private function carrinhoExiste($modelo, $categoria, $numero) {
-        $stmt = $this->conn->prepare("SELECT * FROM carrinhos WHERE modelo = :modelo AND categoria = :categoria AND numero = :numero");
-        $stmt->execute([
-            ':modelo'       => $modelo,
-            ':categoria'    => $categoria,
-            ':numero'       => $numero,
-        ]);
-
-        return $stmt->rowCount() > 0;
-
-    }
-
     private function adicionarCarrinho($modelo, $categoria, $numero) {
         if($this->carrinhoExiste($modelo, $categoria, $numero)){
             echo "Item já adicionado";
@@ -48,6 +36,29 @@ Class Carrinho
             return true;
         }
     }
+
+    // funcao getCarrinho()
+    private function getCarrinho() {
+        $stmt = $this->conn->prepare("SELECT * FROM carrinhos ORDER BY criado_em DESC");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    private function carrinhoExiste($modelo, $categoria, $numero) {
+        $stmt = $this->conn->prepare("SELECT * FROM carrinhos WHERE modelo = :modelo AND categoria = :categoria AND numero = :numero");
+        $stmt->execute([
+            ':modelo'       => $modelo,
+            ':categoria'    => $categoria,
+            ':numero'       => $numero,
+        ]);
+
+        return $stmt->rowCount() > 0;
+
+    }
+
+    // função atualizarCarrinho
+
+    // função deletarCarrinho
 
 }
 ?>
