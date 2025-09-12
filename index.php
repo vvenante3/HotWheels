@@ -1,6 +1,6 @@
 <?php
 
-    $controller = $_GET['controller'] ?? 'Carrinho';
+    $controller = isset($_GET['controller']) ? ucfirst($_GET['controller']) : 'Carrinho';
     $action = $_GET['action'] ?? 'listar';
 
     $controllerFile = 'controllers/' . $controller . 'Controller.php';
