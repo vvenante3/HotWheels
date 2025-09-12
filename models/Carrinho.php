@@ -4,8 +4,12 @@ Class Carrinho
 {
     private $conn; //guardar dados no Db
 
-    private function conectar() {
-        $host       =   'mysql';
+    public function __construct() {
+        $this->conectar();
+    }
+
+    public function conectar() {
+        $host       =   'db';
         $dbname     =   'db_hotwheels';
         $user       =   'admin';
         $pass       =   'admin';
@@ -19,7 +23,7 @@ Class Carrinho
         }
     }
 
-    private function adicionarCarrinho($modelo, $categoria, $numero) {
+    public function adicionarCarrinho($modelo, $categoria, $numero) {
         if($this->carrinhoExiste($modelo, $categoria, $numero)){
             echo "Item já adicionado";
             return false;
@@ -37,8 +41,7 @@ Class Carrinho
         }
     }
 
-    // funcao getCarrinho()
-    private function getCarrinho() {
+    public function getCarrinho() {
         $stmt = $this->conn->prepare("SELECT * FROM carrinhos ORDER BY criado_em DESC");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
