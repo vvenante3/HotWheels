@@ -4,8 +4,12 @@ Class Carrinho
 {
     private $conn; //guardar dados no Db
 
+    public function __construct() {
+        $this->conectar();
+    }
+
     public function conectar() {
-        $host       =   'mysql';
+        $host       =   'db';
         $dbname     =   'db_hotwheels';
         $user       =   'admin';
         $pass       =   'admin';
