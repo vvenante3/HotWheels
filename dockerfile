@@ -1,6 +1,9 @@
 # Usa imagem com PHP + Apache
 FROM php:8.2-apache
 
+# instalando o xdebug
+RUN pecl install xdebug \ && docker-php-ext-enable xdebug
+
 # Instala extensões comuns do PHP (se precisar, pode adicionar outras)
 RUN docker-php-ext-install pdo pdo_mysql mysqli
 
