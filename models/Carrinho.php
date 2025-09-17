@@ -47,7 +47,7 @@ Class Carrinho
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    private function carrinhoExiste($modelo, $categoria, $numero) {
+    public function carrinhoExiste($modelo, $categoria, $numero) {
         $stmt = $this->conn->prepare("SELECT * FROM carrinhos WHERE modelo = :modelo AND categoria = :categoria AND numero = :numero");
         $stmt->execute([
             ':modelo'       => $modelo,

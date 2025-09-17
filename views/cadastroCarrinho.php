@@ -8,7 +8,7 @@
 <body>
     <h1>Cadastrar Carrinho</h1>
 
-    <form action="index.php?controller=carrinho&action=adicionar" method="POST">
+    <form action="index.php?controller=carrinho&action=cadastrar" method="POST">
         <label for="modelo">Modelo:</label>
         <input type="text" name="modelo"    id="modelo">
         <br>
