@@ -1,5 +1,7 @@
 <?php
 
+    session_start();
+
     $controller = isset($_GET['controller']) ? ucfirst($_GET['controller']) : 'Carrinho';
     $action = $_GET['action'] ?? 'listar';
 

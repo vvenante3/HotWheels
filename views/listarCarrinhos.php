@@ -7,7 +7,8 @@
 </head>
 <body>
     <h1>Carrinhos Adquiridos</h1>
-    
+
+    <!-- CORRIGIR LISTAR -->
     <?php foreach ($carrinhos as $e): ?>
         <tr>
             <td><?php htmlspecialchars($c['modelo'])    ?></td>

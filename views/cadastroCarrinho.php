@@ -22,7 +22,12 @@
         <button type="submit">Cadastrar</button>
     </form>
 
-    <?php if(isset($mensagem)) echo $mensagem; ?>
+<?php
+    if(isset($_SESSION['mensagem'])){
+        echo $_SESSION['mensagem'];
+        unset($_SESSION['mensagem']);
+    };
+?>
 
 </body>
 </html>

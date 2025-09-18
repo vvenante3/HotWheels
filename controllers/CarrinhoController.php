@@ -19,6 +19,17 @@ Class CarrinhoController {
 
             $carrinhoModel = new Carrinho();
             $existe        = $carrinhoModel->carrinhoExiste($modelo, $categoria, $numero);
+
+            if($carrinhoModel->carrinhoExiste($modelo, $categoria, $numero)){
+                $_SESSION['mensagem'] = "Carrinho já cadastrado!";
+                header('Location: index.php?controller=carrinho&action=cadastrar');
+                exit;
+            } else {
+                $carrinhoModel->adicionarCarrinho($modelo, $categoria, $numero);
+                $_SESSION['mensagem'] = "Carrinho cadastrado com sucesso!";
+                header('Location: index.php?controller=carrinho&action=cadastrar');
+                exit;
+            }
         }
 
         require 'views/cadastroCarrinho.php';
