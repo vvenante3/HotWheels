@@ -27,7 +27,7 @@ Class CarrinhoController {
             } else {
                 $carrinhoModel->adicionarCarrinho($modelo, $categoria, $numero);
                 $_SESSION['mensagem'] = "Carrinho cadastrado com sucesso!";
-                header('Location: index.php?controller=carrinho&action=cadastrar');
+                header('Location: /index.php?controller=carrinho&action=cadastrar');
                 exit;
             }
         }
