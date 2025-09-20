@@ -57,7 +57,23 @@ Class Carrinho
 
     }
 
-    // função atualizarCarrinho
+    public function getCarrinhoById($id) {
+        $stmt = $this->conn->prepare("SELECT * FROM carrinhos WHERE id = :id");
+        $stmt->execute([':id' => $id]);
+        $carrinho = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $carrinho ?? null;
+    }
+
+    public function atualizarCarrinho($id, $modelo, $categoria, $numero){
+        $stmt = $this->conn->prepare("UPDATE carrinhos SET modelo = :modelo , categoria = :categoria, numero = :numero WHERE id = :id");
+        $resultado= $stmt->execute([
+            ':modelo'    => $modelo,
+            ':categoria' => $categoria,
+            ':numero'    => $numero,
+        ]);
+
+        return $resultado;
+    }
 
     // função deletarCarrinho
 
