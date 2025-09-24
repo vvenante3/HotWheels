@@ -67,6 +67,7 @@ Class Carrinho
     public function atualizarCarrinho($id, $modelo, $categoria, $numero){
         $stmt = $this->conn->prepare("UPDATE carrinhos SET modelo = :modelo , categoria = :categoria, numero = :numero WHERE id = :id");
         $resultado= $stmt->execute([
+            ':id'        => $id,
             ':modelo'    => $modelo,
             ':categoria' => $categoria,
             ':numero'    => $numero,

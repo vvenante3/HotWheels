@@ -1,6 +1,5 @@
 <?php
 
-        // 1. Carregar a model
 require_once 'models/Carrinho.php';
 
 Class CarrinhoController {
@@ -54,30 +53,34 @@ Class CarrinhoController {
             exit;
         }
 
-        if (isset($_POST['modelo'], $_POST['categoria'], $_POST['numero'])){
-            $modelo     = $_POST['modelo'];
-            $categoria  = $_POST['categoria'];
-            $numero     = $_POST['numero'];
-        }
-
         require 'views/editarCarrinho.php';
 
     }
 
-    public function atualizarCarrinho($id, $modelo, $categoria, $numero) {
-        $carrinho = new Carrinho();
-        $sucesso = $carrinho->atualizarCarrinho($id, $modelo, $categoria, $numero);
+    public function atualizarCarrinho() {
+        if (isset($_POST['id'], $_POST['modelo'], $_POST['categoria'], $_POST['numero'])) {
+            $id         = $_POST['id'];
+            $modelo     = $_POST['modelo'];
+            $categoria  = $_POST['categoria'];
+            $numero     = $_POST['numero'];
 
-        if ($sucesso){
-            $_SESSION['mensagem'] = 'Carrinho atualizado com sucesso!';
+            $carrinho   = new Carrinho();
+            $sucesso    = $carrinho->atualizarCarrinho($id, $modelo, $categoria, $numero);
+
+            if ($sucesso) {
+                $_SESSION['mensagem'] = 'Carrinho atualizado com sucesso!';
+                header('Location: /index.php?controller=carrinho&action=listar');
+                exit;
+            } else {
+                $_SESSION['mensagem'] = "Erro ao atualizar o carrinho";
+                header('Location: /index.php?controller=carrinho&action=listar' . $id);
+                exit;
+            } 
         } else {
-            $_SESSION['mensagem'] = 'Erro ao atualizar carrinho';
+            $_SESSION['mensagem'] = "Dados inválidos para atualização";
+            header('Location: /index.php?controller=carrinho&action=listar');
+            exit;
         }
-
-        header('Location: /index.php?controller=carrinho&action=editar&id=' . $id);
-        exit;
     }
-
 }
-
 ?>

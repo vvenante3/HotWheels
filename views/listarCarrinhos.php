@@ -14,6 +14,7 @@
                 <th>Modelo</th>
                 <th>Categoria</th>
                 <th>Numero</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +23,9 @@
                     <td><?= htmlspecialchars($c['modelo'])    ?></td>
                     <td><?= htmlspecialchars($c['categoria']) ?></td>
                     <td><?= htmlspecialchars($c['numero'])    ?></td>
+                        <td>
+                            <a href="index.php?controller=carrinho&action=editar&id=<?= $c['id'] ?>">Editar</a>
+                        </td>
                 </tr>
             <?php endforeach ?>
         </tbody>
