@@ -64,9 +64,9 @@ Class Carrinho
         return $carrinho ?? null;
     }
 
-    public function atualizarCarrinho($id, $modelo, $categoria, $numero){
+    public function atualizarCarrinho($id, $modelo, $categoria, $numero) {
         $stmt = $this->conn->prepare("UPDATE carrinhos SET modelo = :modelo , categoria = :categoria, numero = :numero WHERE id = :id");
-        $resultado= $stmt->execute([
+        $resultado = $stmt->execute([
             ':id'        => $id,
             ':modelo'    => $modelo,
             ':categoria' => $categoria,
@@ -76,7 +76,14 @@ Class Carrinho
         return $resultado;
     }
 
-    // função deletarCarrinho
+    public function deletarCarrinho($id) {
+        $stmt = $this->conn->prepare("DELETE FROM carrinhos WHERE id = :id");
+        $resultado = $stmt->execute([
+            ':id'   => $id
+        ]);
+
+        return $resultado;
+    }
 
 }
 ?>

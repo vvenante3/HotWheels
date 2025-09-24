@@ -35,7 +35,7 @@ Class CarrinhoController {
 
     }
 
-    public function editar() {
+    public function editarCarrinho() {
         $id = $_GET['id'] ?? null;
 
         if (!$id){
@@ -81,6 +81,28 @@ Class CarrinhoController {
             header('Location: /index.php?controller=carrinho&action=listar');
             exit;
         }
+    }
+
+    public function deletarCarrinho() {
+        $id = $_GET['id'] ?? null;
+
+        if (!$id) {
+            $_SESSION['mensagem'] = 'Carrinho não encontrado';
+            header('Location: /index.php?controller=carrinho$action=listar');
+            exit;
+        }
+
+        $carrinhoModel = new Carrinho();
+        $sucesso = $carrinhoModel->deletarCarrinho($id);
+
+        if ($sucesso) {
+            $_SESSION['mensagem'] = 'Carrinho deletado com sucesso';
+        } else {
+            $_SESSION['mensagem'] = 'Erro ao deletar carrinho';
+        }
+
+        header('Location /index.php?controller=carrinho&action=listar');
+        exit;
     }
 }
 ?>

@@ -24,8 +24,10 @@
                     <td><?= htmlspecialchars($c['categoria']) ?></td>
                     <td><?= htmlspecialchars($c['numero'])    ?></td>
                         <td>
-                            <a href="index.php?controller=carrinho&action=editar&id=<?= $c['id'] ?>">Editar</a>
+                            <a href="index.php?controller=carrinho&action=editarCarrinho&id=<?= $c['id'] ?>">Editar</a>
+                            <a href="index.php?controller=carrinho&action=deletarCarrinho&id=<?php echo $c['id']; ?>" onclick="return confirm('Tem certeza que deseja deletar?')">Deletar</a>
                         </td>
+                        
                 </tr>
             <?php endforeach ?>
         </tbody>
